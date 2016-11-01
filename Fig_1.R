@@ -1,5 +1,5 @@
 #read data of cucurbita species occurence 
-data <- read.csv("Cucurbita_for_R.csv")
+data <- read.csv("Fig_1.csv")
 #removes datapoints for occurrences in Brazil
 noBR_data <- subset(data, countrycode!="BR")
 noBR_CO_data <- subset(noBR_data, countrycode!="CO")
