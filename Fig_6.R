@@ -16,7 +16,7 @@ tree9 <- rotate(tree8,c("Cucurbita_argyrosperma","Cucurbita_moschata"))
 tree10 <- rotate(tree9,c("Cucurbita_maxima","Cucurbita_ecuadorensis"))
 
 #read in character matrix
-chars <- read.csv("chars - Copy.csv", row.names=1)
+chars <- read.csv("Fig_6.csv", row.names=1)
 chars <- as.matrix(chars)[,1]
 
 cols <- c("black","gray")
