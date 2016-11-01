@@ -2,8 +2,8 @@ library(ape)
 library(distory)
 library(phytools)
 #read in
-RAxML <- read.tree("RAxML_ambiguity.tree")
-ASTRAL <- read.tree("ASTRAL_ambiguity_50coll.nex")
+RAxML <- read.tree("Fig_5_RAxML.tree")
+ASTRAL <- read.tree("Fig_5_ASTRAL.nex")
 
 #plot
 plotTree(RAxML)
