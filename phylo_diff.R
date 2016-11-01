@@ -1,0 +1,56 @@
+library(ape)
+library(distory)
+library(phytools)
+#read in
+RAxML <- read.tree("RAxML_ambiguity.tree")
+ASTRAL <- read.tree("ASTRAL_ambiguity_50coll.nex")
+
+#plot
+plotTree(RAxML)
+plotTree(ASTRAL)
+
+#rotate
+RAxML_rotated <- rotate(RAxML,c("Citrullus_lanatus","C_pepo_Argentina_2"))
+RAxML_rotated <- rotate(RAxML_rotated,c("C_pedatifolia_Mexico_2","C_pepo_Argentina_2"))
+RAxML_rotated <- rotate(RAxML_rotated,c("C_ficifolia_Mexico_SW","C_pepo_Argentina_2"))
+RAxML_rotated <- rotate(RAxML_rotated,c("C_andreana_Argentina_1","C_pepo_Argentina_2"))
+RAxML_rotated <- rotate(RAxML_rotated,c("C_sororia_Mexico_SW_1","C_pepo_Argentina_2"))
+RAxML_rotated <- rotate(RAxML_rotated,c("C_martinezii_Mexico_2","C_pepo_Argentina_2"))
+RAxML_rotated <- rotate(RAxML_rotated,c("C_moschata_Puerto_Rico","C_sororia_Mexico_SW_1"))
+RAxML_rotated <- rotate(RAxML_rotated,c("C_ecuadorensis_Ecuador_1","C_andreana_Argentina_1"))
+RAxML_rotated <- rotateNodes(RAxML_rotated,c(114,126))
+RAxML_rotated <- rotateNodes(RAxML_rotated,c(113,104))
+RAxML_rotated <- rotateNodes(RAxML_rotated,c(103))
+RAxML_rotated <- rotateNodes(RAxML_rotated,c(126))
+RAxML_rotated <- rotateNodes(RAxML_rotated,c(127))
+RAxML_rotated <- rotateNodes(RAxML_rotated,c(128))
+RAxML_rotated <- rotateNodes(RAxML_rotated,c(132))
+
+
+plotTree(RAxML_rotated)
+nodelabels()
+#rotate ASTRAL
+ASTRAL_rotated <- rotate(ASTRAL,c("Citrullus_lanatus","C_pepo_Argentina_2"))
+ASTRAL_rotated <- rotate(ASTRAL_rotated,c("C_pedatifolia_Mexico_2","C_pepo_Argentina_2"))
+ASTRAL_rotated <- rotate(ASTRAL_rotated,c("C_ficifolia_Mexico_SW","C_pepo_Argentina_2"))
+ASTRAL_rotated <- rotate(ASTRAL_rotated,c("C_andreana_Argentina_1","C_pepo_Argentina_2"))
+ASTRAL_rotated <- rotate(ASTRAL_rotated,c("C_sororia_Mexico_SW_1","C_pepo_Argentina_2"))
+ASTRAL_rotated <- rotate(ASTRAL_rotated,c("C_martinezii_Mexico_2","C_pepo_Argentina_2"))
+ASTRAL_rotated <- rotate(ASTRAL_rotated,c("C_moschata_Puerto_Rico","C_sororia_Mexico_SW_1"))
+ASTRAL_rotated <- rotate(ASTRAL_rotated,c("C_ecuadorensis_Ecuador_1","C_andreana_Argentina_1"))
+ASTRAL_rotated <- rotateNodes(ASTRAL_rotated,c(114,132))
+ASTRAL_rotated <- rotateNodes(ASTRAL_rotated,c(102,121))
+ASTRAL_rotated <- rotateNodes(ASTRAL_rotated,c(104,121))
+ASTRAL_rotated <- rotateNodes(ASTRAL_rotated,c(113,114))
+ASTRAL_rotated <- rotateNodes(ASTRAL_rotated,105)
+plotTree(ASTRAL_rotated)
+plotTree(RAxML_rotated)
+#run phylo.diff
+tiff(file = "phylodiff_left.tiff", width = 3800, height = 3200, units = "px", res = 800)
+phylo.diff(ASTRAL_rotated,RAxML_rotated, direction=("leftwards"), edge.width=5, font=4, cex=1.1, no.margin=TRUE, x.lim=32)
+dev.off()
+tiff(file = "phylodiff_right.tiff", width = 3200, height = 3200, units = "px", res = 800)
+phylo.diff(ASTRAL_rotated,RAxML_rotated, direction=("rightwards"), edge.width=5, font=4, cex=1.1, no.margin=TRUE, x.lim=32)
+dev.off()
+
+plot.phylo()
